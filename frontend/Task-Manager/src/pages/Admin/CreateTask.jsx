@@ -11,7 +11,7 @@ import { LuTrash2 } from "react-icons/lu";
 
 import SelectDropdown from "../../components/Inputs/SelectDropdown";
 import SelectUsers from "../../components/Inputs/SelectUsers";
-import TodoListInput from "../../components/Inputs/TodoListInput";
+import TodoListInput from "../../components/Inputs/TodolistInput";
 import AddAttachmentsInput from "../../components/Inputs/AddAttachmentsInput";
 import DeleteAlert from "../../components/DeleteAlert";
 import Modal from "../../components/Modal";
