@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Poppins", "sans-serif";
+
+  /* Breakpoints */
+  --breakpoint-3xl: 1920px;
+
+  /* Colors – Soft Blue Theme */
+  --color-primary: #2563eb;   /* Vibrant Blue */
+  --color-accent: #3b82f6;    /* Medium Blue */
+  --color-surface: #f8fafc;   /* Light Surface */
+  --color-background: #eff6ff; /* Blue-tinted White */
+  --color-text-main: #1e293b;  /* Slate Navy */
+  --color-text-muted: #64748b; /* Muted Slate */
+}
+
+@layer base {
+  html {
+    font-family: var(--font-display);
+  }
+
+  body {
+    background: linear-gradient(135deg, var(--color-background), var(--color-surface));
+    color: var(--color-text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Smooth transitions */
+  * {
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+}
+
+/* Container utility */
+.container {
+  @apply mx-auto px-4;
+}
+
+button {
+  @apply cursor-pointer;
+}
