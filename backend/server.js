@@ -15,12 +15,12 @@ const taskRoutes = require("./routes/taskRoutes");
 const reportRoutes = require("./routes/reportRoutes");
 
 // ✅ CORS configuration
-app.use(
+  app.use(
   cors({
     origin: [
-      "http://localhost:5173",                  // Local frontend (Vite)
-      process.env.CLIENT_URL || ""              // Deployed frontend (Render/Netlify/Vercel etc.)
-    ].filter(Boolean),                          // Remove empty strings
+      "http://localhost:5173",                 // Dev frontend
+      "https://zen-task-tau.vercel.app"        // Vercel frontend
+    ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
