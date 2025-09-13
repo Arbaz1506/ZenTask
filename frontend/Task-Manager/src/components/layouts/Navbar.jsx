@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { HiOutlineMenu } from "react-icons/hi";
+import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import SideMenu from "./SideMenu";
 
 const Navbar = ({ activeMenu }) => {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [openSideMenu, setOpenSideMenu] = useState(false);
 
   return (
     <>
@@ -13,13 +13,13 @@ const Navbar = ({ activeMenu }) => {
         role="banner"
         aria-label="Main navigation bar"
       >
-        {/* Mobile Hamburger */}
+        {/* Mobile toggle */}
         <button
           className="md:hidden text-2xl text-gray-100 hover:text-purple-400 transition-all"
-          onClick={() => setIsSideMenuOpen(true)}
-          aria-label="Open menu"
+          onClick={() => setOpenSideMenu(!openSideMenu)}
+          aria-label={openSideMenu ? "Close menu" : "Open menu"}
         >
-          <HiOutlineMenu />
+          {openSideMenu ? <HiOutlineX /> : <HiOutlineMenu />}
         </button>
 
         {/* Brand */}
@@ -27,7 +27,7 @@ const Navbar = ({ activeMenu }) => {
           ZenTask
         </h1>
 
-        {/* Desktop message */}
+        {/* Task manager message */}
         <div className="hidden md:flex items-center gap-4">
           <span className="text-gray-200 text-sm font-medium select-none">
             Organize your day, master your tasks
@@ -35,8 +35,27 @@ const Navbar = ({ activeMenu }) => {
         </div>
       </nav>
 
-      {/* SideMenu */}
-      <SideMenu activeMenu={activeMenu} isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
+      {/* Mobile SideMenu Overlay */}
+      {openSideMenu && (
+        <div
+          className="fixed inset-0 z-40 flex"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Side menu"
+        >
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm"
+            onClick={() => setOpenSideMenu(false)}
+            aria-hidden="true"
+          ></div>
+
+          {/* SideMenu */}
+          <div className="relative w-64 h-full bg-white/10 backdrop-blur-md shadow-lg rounded-tr-3xl rounded-br-3xl p-6">
+            <SideMenu activeMenu={activeMenu} />
+          </div>
+        </div>
+      )}
     </>
   );
 };
