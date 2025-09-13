@@ -1,18 +1,16 @@
-import React, { useState } from "react";
-import { HiOutlineMenu } from "react-icons/hi";
+import React from "react";
+import { HiOutlineMenu, HiX } from "react-icons/hi";
 
-const Navbar = ({ onMenuClick }) => {
+const Navbar = ({ isSidebarOpen, onMenuClick }) => {
   return (
-    <nav
-      className="flex items-center justify-between px-6 py-3 bg-white/10 backdrop-blur-md border-b border-gray-200/20 shadow-sm sticky top-0 z-50"
-    >
-      {/* Mobile Hamburger */}
+    <nav className="flex items-center justify-between px-6 py-3 bg-white/10 backdrop-blur-md border-b border-gray-200/20 shadow-sm sticky top-0 z-50">
+      {/* Mobile Toggle */}
       <button
         className="md:hidden text-2xl text-gray-100 hover:text-purple-400 transition-all"
         onClick={onMenuClick}
-        aria-label="Open menu"
+        aria-label="Toggle menu"
       >
-        <HiOutlineMenu />
+        {isSidebarOpen ? <HiX /> : <HiOutlineMenu />}
       </button>
 
       {/* Brand */}
