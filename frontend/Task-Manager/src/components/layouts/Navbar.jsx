@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { HiOutlineMenu } from "react-icons/hi";
 import SideMenu from "./SideMenu";
 
 const Navbar = ({ activeMenu }) => {
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+
   return (
     <>
       {/* Navbar */}
@@ -10,12 +13,21 @@ const Navbar = ({ activeMenu }) => {
         role="banner"
         aria-label="Main navigation bar"
       >
-        {/* Mobile toggle is inside SideMenu now */}
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden text-2xl text-gray-100 hover:text-purple-400 transition-all"
+          onClick={() => setIsSideMenuOpen(true)}
+          aria-label="Open menu"
+        >
+          <HiOutlineMenu />
+        </button>
+
+        {/* Brand */}
         <h1 className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-300 select-none">
           ZenTask
         </h1>
 
-        {/* Optional desktop message */}
+        {/* Desktop message */}
         <div className="hidden md:flex items-center gap-4">
           <span className="text-gray-200 text-sm font-medium select-none">
             Organize your day, master your tasks
@@ -24,7 +36,7 @@ const Navbar = ({ activeMenu }) => {
       </nav>
 
       {/* SideMenu */}
-      <SideMenu activeMenu={activeMenu} />
+      <SideMenu activeMenu={activeMenu} isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
     </>
   );
 };

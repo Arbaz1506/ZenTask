@@ -2,14 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import { SIDE_MENU_DATA, SIDE_MENU_USER_DATA } from "../../utils/data";
-import PRO_DEF from "../../assets/images/proDef.jpg"; // Default profile image
-import { HiOutlineMenu } from "react-icons/hi"; // Hamburger icon
-import { IoMdClose } from "react-icons/io"; // Close icon
+import PRO_DEF from "../../assets/images/proDef.jpg";
+import { IoMdClose } from "react-icons/io";
 
-const SideMenu = ({ activeMenu }) => {
+const SideMenu = ({ activeMenu, isOpen, setIsOpen }) => {
   const { user, clearUser } = useContext(UserContext);
   const [sideMenuData, setSideMenuData] = useState([]);
-  const [isOpen, setIsOpen] = useState(false); // Mobile toggle
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,24 +21,17 @@ const SideMenu = ({ activeMenu }) => {
       localStorage.clear();
       if (clearUser) clearUser();
       navigate("/login");
+      setIsOpen(false);
       return;
     }
     navigate(route);
-    setIsOpen(false); // Close sidebar on mobile after navigation
+    setIsOpen(false); // Close sidebar on mobile after click
   };
 
   if (!user) return <div className="p-4 text-gray-400">Loading menu...</div>;
 
   return (
     <>
-      {/* Mobile Hamburger */}
-      <button
-        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-purple-600 text-white rounded-md shadow-lg"
-        onClick={() => setIsOpen(true)}
-      >
-        <HiOutlineMenu className="w-6 h-6" />
-      </button>
-
       {/* Sidebar */}
       <aside
         className={`
