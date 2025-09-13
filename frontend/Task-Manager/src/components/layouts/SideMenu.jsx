@@ -25,7 +25,7 @@ const SideMenu = ({ activeMenu, isOpen, setIsOpen }) => {
       return;
     }
     navigate(route);
-    setIsOpen(false); // Close sidebar on mobile after click
+    setIsOpen(false);
   };
 
   if (!user) return <div className="p-4 text-gray-400">Loading menu...</div>;
@@ -42,12 +42,13 @@ const SideMenu = ({ activeMenu, isOpen, setIsOpen }) => {
           md:translate-x-0 md:static
         `}
       >
-        {/* Mobile Close Button */}
+        {/* Mobile Close Button (three-dot cross) */}
         <button
-          className="md:hidden self-end mb-4 text-white"
+          className="md:hidden self-end mb-4 text-white text-2xl font-bold"
           onClick={() => setIsOpen(false)}
+          aria-label="Close menu"
         >
-          <IoMdClose className="w-6 h-6" />
+          &#x22EE; {/* Vertical three dots */}
         </button>
 
         {/* Profile Card */}
@@ -61,7 +62,9 @@ const SideMenu = ({ activeMenu, isOpen, setIsOpen }) => {
             <span className="absolute -bottom-1 right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white/50"></span>
           </div>
           {user.role === "admin" && (
-            <span className="text-xs text-purple-300 font-semibold uppercase mt-2 tracking-wide">Admin</span>
+            <span className="text-xs text-purple-300 font-semibold uppercase mt-2 tracking-wide">
+              Admin
+            </span>
           )}
           <h5 className="text-md font-semibold mt-1 truncate">{user.name || ""}</h5>
           <p className="text-xs text-gray-300 truncate">{user.email || ""}</p>
@@ -101,7 +104,7 @@ const SideMenu = ({ activeMenu, isOpen, setIsOpen }) => {
           &copy; 2025 ZenTask
         </div>
 
-        {/* Gradient Animation Keyframes */}
+        {/* Gradient Animation */}
         <style>{`
           @keyframes gradient {
             0% { background-position: 0% 50%; }

@@ -11,7 +11,6 @@ const Navbar = ({ activeMenu }) => {
       <nav
         className="flex items-center justify-between px-6 py-3 bg-white/10 backdrop-blur-md border-b border-gray-200/20 shadow-sm sticky top-0 z-50"
         role="banner"
-        aria-label="Main navigation bar"
       >
         {/* Mobile Hamburger */}
         <button
@@ -41,6 +40,11 @@ const Navbar = ({ activeMenu }) => {
         isOpen={isSideMenuOpen}
         setIsOpen={setIsSideMenuOpen}
       />
+
+      {/* Content shift on desktop */}
+      <div className="md:ml-64 p-6">
+        {/* Your main page content goes here */}
+      </div>
     </>
   );
 };
